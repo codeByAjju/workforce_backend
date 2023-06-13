@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 const userProfileUpdateSchema = Joi.object({
-  firstName: Joi.string()
+  firstname: Joi.string()
     .min(3)
     .max(20)
     .messages({
@@ -11,7 +11,7 @@ const userProfileUpdateSchema = Joi.object({
       'string.max': 'FIRST_NAME_MAX_VALIDATION',
     })
     .required(),
-  lastName: Joi.string()
+  lastname: Joi.string()
     .min(3)
     .max(20)
     .messages({

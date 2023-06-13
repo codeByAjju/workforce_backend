@@ -6,15 +6,18 @@ module.exports = (sequelize, DataTypes) => {
     {
       firstname: {
         type: DataTypes.STRING(256),
+        allowNull:false
       },
       lastname: {
         type: DataTypes.STRING(256),
+        allowNull:false
       },
       email: {
         type: DataTypes.STRING(256),
-        unique:true,
-        validate:{
-          isEmail:true
+        allowNull:false,
+        unique: {
+          args: 'email',
+          msg: 'Email should be unique!',
         }
       },
       password: {
@@ -27,7 +30,15 @@ module.exports = (sequelize, DataTypes) => {
         unique: {
           args: 'phoneNumber',
           msg: 'The phoneNumber is already taken!',
-        },
+        }
+      },
+      profileImage: {
+        type: DataTypes.STRING,
+        // set(val) {
+        //   let tmpStr = val;
+        //   tmpStr = tmpStr.replace(/\\/g, '/');
+        //   this.setDataValue('profileImage', tmpStr);
+        // }
       }
     }
   );

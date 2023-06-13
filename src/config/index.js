@@ -3,6 +3,20 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 export default {
+      app: {
+            siteName: process.env.SITE_NAME,
+            siteEmail: '',
+            mediaStorage: 'local', 
+            mediaUploadSizeLimit: 1024 * 1024 * 15,
+            baseUrl: process.env.BASE_URL,
+            adminUrl: process.env.ADMIN_URL,
+            resetUrl: process.env.RESET_URL,
+            environment: process.env.NODE_ENV,
+            languages: ['en', 'hi'],
+            setBaseUrl(url) {
+              this.baseUrl = url;
+            },
+          },
   database: {
         mysql: {
         host: process.env.DB_HOST,

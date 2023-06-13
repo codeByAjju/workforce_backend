@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
-import config from '../src/config';
+import config from '../config';
 
 export default {
-  createToken(payload) {
+  createToken(payload) {  
     return jwt.sign(payload, config.jwt.jwtSecret, {
       expiresIn: config.jwt.jwtExpireIn,
     });

@@ -1,15 +1,17 @@
 import {Router} from "express";
 import controller from "../controller";
 import validations from '../validations';
-import middlewares from '';
+import middlewares from '../middlewares';
 
 
     
-const router=Router();
+const 
+router=Router();
 const { userController } = controller;
 const { userValidator } = validations;
-const {userMiddleware} = middlewares;
+const {validateMiddleware} = middlewares;
 
 
-router.post('/signup',userController.signUp);
+router.post('/signup',validateMiddleware({schema:userValidator.userProfileUpdateSchema}),userController.signUp);
+router.post('/signIn',userController.signIn);
 export default router;

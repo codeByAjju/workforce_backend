@@ -2,6 +2,7 @@ import HttpStatus from 'http-status';
 
 const validateRequest = (options) => async (req, res, next) => {
   try {
+    console.log("Entered")
     await options.schema.validateAsync({
       ...req.query,
       ...req.body,
@@ -9,16 +10,15 @@ const validateRequest = (options) => async (req, res, next) => {
     });
     next();
   } catch (error) {
+    console.log(error)
     const errors = [];
     if (error.isJoi) {
       res.status(HttpStatus.BAD_REQUEST).json({
         success: false,
         data: null,
-        error: errors,
-        message: 'inside the bad request',
+        message: error.message
       });
     }
   }
 };
-
-export default validateRequest;
+export default validateRequest; 
