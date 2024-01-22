@@ -1,33 +1,37 @@
-import Sequelize from 'sequelize';
-import fs from 'fs';
-import path from 'path';
-import config from '../config/index.js';
-
+import { Sequelize } from "sequelize";
+import config from "../config/index.js";
+import fs from "fs";
+import path from "path";
 const dbConfig = config.database.mysql;
 const db = {};
+
 const sequelize = new Sequelize(dbConfig.db, dbConfig.user, dbConfig.password, {
+  // force: true,
   host: dbConfig.host,
   port: dbConfig.port,
   timezone: dbConfig.timezone,
-  logging: () => {
-    // logger.infoLogger.info(message);
-    // console.log(message)
-  },
-  dialect: 'mysql'
+  dialect: "mysql",
+  logging:false
 });
 
 fs.readdirSync(__dirname)
-  .filter((file) => file.indexOf('.') !== 0 && file !== 'index.js')
+  .filter((file) => file.indexOf(".") !== 0 && file !== "index.js")
   .forEach((file) => {
+    // eslint-disable-next-line import/no-dynamic-require, global-require
     const model = require(path.join(__dirname, file))(
       sequelize,
-      Sequelize.DataTypes,
-    );  
+      Sequelize.DataTypes
+    );
+
     db[model.name] = model;
   });
 
-  
+Object.keys(db).forEach((modelName) => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
+
 db.sequelize = sequelize;
-db.Sequelize = Sequelize;
 
 module.exports = db;

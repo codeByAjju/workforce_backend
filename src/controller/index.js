@@ -1,9 +1,13 @@
-import userController from './user-controller';
-import mediaController from './media-controller';
 import mediaValidator from '../validations';
+import employeeController from './employee-controller';
+import mediaController from './media-controller';
+import designationController from "./designation.controller"
+import checkInController from "./checkIn.controller"
 export default {
-    userController,
+    employeeController,
     mediaController,
-    mediaValidator
+    mediaValidator,
+    designationController,
+    checkInController
     
 }

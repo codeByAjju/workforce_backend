@@ -11,7 +11,7 @@ const { validateMiddleware } = middlewares;
 router.post(
   '/media/upload/:mediaFor/:mediaType',
   (req, res, next) => {
-    Object.assign(req.params, {
+    Object.assign(req.params, { 
       apiName: 'media',
     });
     next();
@@ -21,10 +21,6 @@ router.post(
     Object.assign(req.body, params);
     next();
   },
-  // validateMiddleware({
-  //   schema: mediaValidator.uploadSchema,
-  // }),
-  mediaController.uploadMedia,
-  mediaController.saveMedia,
+  mediaController.uploadMedia
 );
 export default router;

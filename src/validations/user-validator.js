@@ -27,26 +27,17 @@ const userProfileUpdateSchema = Joi.object({
     .max(50)
     .messages({
       'any.required': 'EMAIL_REQUIRED',
-      'string.empty': 'EMAIL_REQUIRED',
+      'string.empty': 'EMAIL_REQUIRED', 
       'string.email': 'VALID_EMAIL_ALLOWED',
       'string.min': 'EMAIL_MIN_VALIDATION',
       'string.max': 'EMAIL_MAX_VALIDATION',
     })
     .required(),
-  password: Joi.string()
-    .min(8)
-    .pattern(new RegExp('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$'))
+  password: Joi.string()  
+    .min(6)
     .label('Password')
-    .messages({
-      'string.pattern.base': 'Password must contain at least one letter and one number',
-    })
     .required(),  
-  phoneNumber: Joi.string()
-    .regex(/^[0-9]{10,15}$/)
-    .messages({
-      'string.pattern.base': 'ONLY_NUMERIC_ALLOWED',
-      'string.length': 'PHONE_MAX_VALIDATION',
-    })
+  phoneNumber: Joi.number()
     .required()
 });
 export default {
