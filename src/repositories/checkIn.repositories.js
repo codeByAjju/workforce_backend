@@ -10,6 +10,7 @@ export default {
       const result = await CheckInTime.create(bodyData);
       return result;
     } catch (error) {
+      console.log("lasjlksdfldsjfjl")
       console.log(error);
       throw Error(error);
     }
