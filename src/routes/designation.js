@@ -9,8 +9,8 @@ const { authValidateRequest, resourceAccessMiddleware } = middlewares;
 
 router.post(
   "/admin/create-designation",
-  authValidateRequest,
-  resourceAccessMiddleware(["admin"]),
+  // authValidateRequest,
+  // resourceAccessMiddleware(["admin"]),
   designationController.createDesignation
 );
 router.get(
