@@ -12,8 +12,8 @@ const { validateMiddleware } = middlewares;
 
 router.post(
   "/signup",
-  authValidateRequest,
-  resourceAccessGuard(["admin"]),
+  // authValidateRequest,
+  // resourceAccessGuard(["admin"]),
   employeeController.signUp
 );
 router.post("/signIn", employeeController.signIn);
